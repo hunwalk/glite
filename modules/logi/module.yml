@@ -1,0 +1,16 @@
+# glite's logi module: finds Logitech devices and asks them for their name and battery over HID++, the
+# protocol Solaar speaks (https://github.com/pwr-Solaar/Solaar). Windows only for now.
+name: logi
+php: [src]
+library:
+  sources: [native]
+  include-paths: [native]
+  platforms:
+    windows: { link-libs: [hid, setupapi, cfgmgr32] }
+functions:
+  # Starts a scan on a worker thread. Returns its id (0 when a scan is already running); the
+  # devices arrive as events for that id (see native/logi.cc).
+  logi_scan: { returns: int }
+  # Paints a keyboard's keys one colour (0xRRGGBB), or gives its lighting back (-1), on the same
+  # worker thread. Returns the job's id (0 while a scan or another change runs); "done" follows.
+  logi_light: { params: { address: string, color: int }, returns: int }

@@ -1,0 +1,6 @@
+/vendor/
+/build/
+# The toolchain `ragekit setup` installs (TypePHP, Slint)
+/.ragekit/
+# JetBrains IDE settings
+/.idea/

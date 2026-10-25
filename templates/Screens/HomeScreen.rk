@@ -1,0 +1,29 @@
+<VStack>
+    <HStack>
+        <Label text="Logitech devices" size="title" grow="true" />
+        <Button text="Scan again" variant="outline" onClick="scan" />
+    </HStack>
+    @if (!available())
+        <Label text="Device access unavailable (the logi module isn't next to the app)" />
+    @endif
+    <Label text="{{ $status }}" />
+    <View style="cards">
+        @foreach ($devices as $i => $device)
+            <Card title="{{ $device->name() }}" style="card">
+                <HStack>
+                    <Image source="{{ $device->image }}" width="{{ self::IMAGE_WIDTH }}" height="{{ self::IMAGE_HEIGHT }}" />
+                    <VStack grow="true">
+                        <Label text="{{ $device->info() }}" />
+                        <Label text="{{ $device->battery() }}" />
+                        @if ($device->level() >= 0)
+                            <Progress value="{{ $device->level() }}" />
+                        @endif
+                        @if ($device->lighting())
+                            <Button text="Lighting" variant="outline" onClick="openLighting($i)" />
+                        @endif
+                    </VStack>
+                </HStack>
+            </Card>
+        @endforeach
+    </View>
+</VStack>

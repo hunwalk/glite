@@ -1,0 +1,32 @@
+{
+    "name": "ragekit/starter",
+    "description": "A new RageKit desktop app: PHP compiled to native code, drawn with Slint.",
+    "type": "project",
+    "require": {
+        "php": ">=8.4",
+        "ragekit/ragekit": "^0.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "RageKit\\Cli\\Composer\\Hooks::offerBuildTools",
+            "@php vendor/bin/ragekit setup"
+        ],
+        "build": "ragekit build",
+        "start": "ragekit run",
+        "dev": "ragekit dev"
+    },
+    "scripts-descriptions": {
+        "build": "Compile the app into build/slint/",
+        "start": "Build the app, then start it",
+        "dev": "Run the app with hot reload"
+    },
+    "config": {
+        "process-timeout": 0,
+        "sort-packages": true
+    }
+}

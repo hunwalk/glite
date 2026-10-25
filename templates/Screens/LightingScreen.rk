@@ -1,0 +1,39 @@
+<VStack>
+    <HStack>
+        <Button text="← Devices" variant="ghost" onClick="goBack" />
+        <Label text="{{ $title }}" size="title" grow="true" />
+        <Button text="Give back to keyboard" variant="outline" onClick="giveBack" />
+    </HStack>
+    <Label text="The colour stays until the keyboard is replugged, G HUB takes over, or you give the lighting back. Nothing is saved on the keyboard." />
+    <Card title="Colours">
+        <View style="swatches">
+            @foreach (self::SWATCHES as $swatch)
+                <View style="swatch">
+                    <View style="chip" @style(['White' => $swatch === 'White', 'Red' => $swatch === 'Red', 'Orange' => $swatch === 'Orange', 'Yellow' => $swatch === 'Yellow', 'Green' => $swatch === 'Green', 'Cyan' => $swatch === 'Cyan', 'Blue' => $swatch === 'Blue', 'Purple' => $swatch === 'Purple', 'Pink' => $swatch === 'Pink', 'picked' => $swatch === $picked]) />
+                    <Button text="{{ $swatch }}" variant="outline" onClick="pick($swatch)" />
+                </View>
+            @endforeach
+        </View>
+    </Card>
+    <Card title="Custom colour">
+        <VStack>
+            <HStack>
+                <Label text="Red" style="channel" />
+                <Slider value="{{ $red }}" min="0" max="255" grow="true" />
+            </HStack>
+            <HStack>
+                <Label text="Green" style="channel" />
+                <Slider value="{{ $green }}" min="0" max="255" grow="true" />
+            </HStack>
+            <HStack>
+                <Label text="Blue" style="channel" />
+                <Slider value="{{ $blue }}" min="0" max="255" grow="true" />
+            </HStack>
+            <HStack>
+                <Label text="{{ customHex() }}" grow="true" />
+                <Button text="Apply" onClick="applyCustom" />
+            </HStack>
+        </VStack>
+    </Card>
+    <Label text="{{ $status }}" />
+</VStack>

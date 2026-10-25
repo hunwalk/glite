@@ -1,0 +1,11 @@
+# TypePHP's settings plus a `ragekit:` section. The executable is named after this folder;
+# add `name: …` to choose another name. All options: RageKit's docs/getting-started.md.
+sources:
+  - main.php
+  - src
+
+ragekit:
+  backend: slint
+  kit: shadcn          # or material
+  renderer: software   # software (smallest, default), femtovg or skia (GPU)
+  modules: [logi, http] # logi: Logitech devices over HID++ (modules/logi); http: device pictures
