@@ -20,6 +20,8 @@ and sets a LIGHTSYNC keyboard's colour without G HUB.
 - **Sets a keyboard's lighting**: one colour for every key, from a swatch or red/green/blue
   sliders, and "Give back to keyboard" to restore its own effects. Nothing is written to the
   keyboard's memory: a replug or G HUB brings back its saved lighting too.
+- **Draws its own title bar**: the screen's title, a back button on the lighting screen, and the
+  minimise, maximise and close buttons. Drag it to move the window; double-click to maximise.
 
 G HUB may keep running; glite talks to the devices directly.
 
@@ -40,6 +42,7 @@ answers on a worker thread and posts events back to the UI.
 
 | Path | What it is |
 |---|---|
+| `src/Windows/AppWindow.php` | the window's frame: the custom title bar (`templates/Windows/AppWindow.rk`); screens give it their title through `TitleBar` |
 | `src/Screens/HomeScreen.php` | the device list: scans when it opens, one card per device |
 | `src/Screens/LightingScreen.php` | a keyboard's colour: swatches, sliders, give back |
 | `src/Models/` | `DeviceCard` (what a card shows) and `DeviceCards`, the collection the template loops over |

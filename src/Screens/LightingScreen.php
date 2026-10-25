@@ -2,6 +2,8 @@
 
 namespace App\Screens;
 
+use App\Windows\AppWindow;
+use App\Windows\TitleBar;
 use Logi\Device;
 use Logi\Logi;
 use RageKit\Screen;
@@ -11,7 +13,7 @@ use RageKit\Screen;
  * stays until the keyboard is replugged, G HUB takes over or "Give back" hands the lighting back
  * to the keyboard; nothing is saved on it. Its template is templates/Screens/LightingScreen.rk.
  */
-final class LightingScreen extends Screen
+final class LightingScreen extends Screen implements TitleBar
 {
     /** The swatches, in order; each name is also its style (a colour must be literal in STYLES). */
     public const SWATCHES = ['White', 'Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Purple', 'Pink'];
@@ -38,7 +40,6 @@ final class LightingScreen extends Screen
         'channel' => ['width' => 48],
     ];
 
-    public string $title = 'Lighting';
     public string $status = '';
     /** the swatch last sent; '' for a custom colour or none yet */
     public string $picked = '';
@@ -49,14 +50,16 @@ final class LightingScreen extends Screen
 
     public function __construct(private ?Device $device = null)
     {
-        if ($device !== null) {
-            $this->title = $device->name . ' lighting';
-        }
     }
 
-    public function goBack(): void
+    public static function window(): string
     {
-        $this->navigator()->back();
+        return AppWindow::class;
+    }
+
+    public function title(): string
+    {
+        return $this->device !== null ? $this->device->name . ' lighting' : 'Lighting';
     }
 
     public function pick(string $swatch): void

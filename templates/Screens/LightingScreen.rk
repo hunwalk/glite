@@ -1,10 +1,8 @@
 <VStack>
     <HStack>
-        <Button text="← Devices" variant="ghost" onClick="goBack" />
-        <Label text="{{ $title }}" size="title" grow="true" />
+        <Label text="Nothing is saved on the keyboard: a replug or G HUB brings its own lighting back." grow="true" />
         <Button text="Give back to keyboard" variant="outline" onClick="giveBack" />
     </HStack>
-    <Label text="The colour stays until the keyboard is replugged, G HUB takes over, or you give the lighting back. Nothing is saved on the keyboard." />
     <Card title="Colours">
         <View style="swatches">
             @foreach (self::SWATCHES as $swatch)

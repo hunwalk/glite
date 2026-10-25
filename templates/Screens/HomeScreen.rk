@@ -1,12 +1,11 @@
 <VStack>
     <HStack>
-        <Label text="Logitech devices" size="title" grow="true" />
+        <Label text="{{ $status }}" grow="true" />
         <Button text="Scan again" variant="outline" onClick="scan" />
     </HStack>
     @if (!available())
         <Label text="Device access unavailable (the logi module isn't next to the app)" />
     @endif
-    <Label text="{{ $status }}" />
     <View style="cards">
         @foreach ($devices as $i => $device)
             <Card title="{{ $device->name() }}" style="card">

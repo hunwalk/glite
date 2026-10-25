@@ -1,0 +1,11 @@
+<VStack padded="false">
+    <WindowDrag>
+        @if (canGoBack())
+            <Button text="←" variant="ghost" onClick="back" />
+        @endif
+        <Label text="  {{ $context->title() }}" grow="true" />
+        <WindowControls />
+    </WindowDrag>
+    <Separator />
+    <Content />
+</VStack>

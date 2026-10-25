@@ -5,6 +5,8 @@ namespace App\Screens;
 use App\Models\DeviceCard;
 use App\Models\DeviceCards;
 use App\Services\LogitechImages;
+use App\Windows\AppWindow;
+use App\Windows\TitleBar;
 use Logi\Device;
 use Logi\Logi;
 use RageKit\Screen;
@@ -14,7 +16,7 @@ use RageKit\Screen;
  * Logitech's website, how it's connected, and its battery. Its template is
  * templates/Screens/HomeScreen.rk.
  */
-final class HomeScreen extends Screen
+final class HomeScreen extends Screen implements TitleBar
 {
     /** A card's picture box; Logitech's CDN sends pictures shrunk to fit it. */
     public const IMAGE_WIDTH = 160;
@@ -33,6 +35,16 @@ final class HomeScreen extends Screen
     public function __construct()
     {
         $this->devices = new DeviceCards();
+    }
+
+    public static function window(): string
+    {
+        return AppWindow::class;
+    }
+
+    public function title(): string
+    {
+        return 'Logitech devices';
     }
 
     public function shown(): void
